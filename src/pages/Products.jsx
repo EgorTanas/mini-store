@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
+import ProductCard from "../components/ProductCard";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -29,22 +30,18 @@ function Products() {
     return <p>{error}</p>;
   }
 
-  return (
+    return (
     <div>
       <h1>Products</h1>
 
-      {products.map((product) => (
-        <div key={product.id}>
-          <img
-            src={product.image}
-            alt={product.title}
-            width="100"
+      <div className="products-list">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
           />
-
-          <h3>{product.title}</h3>
-          <p>Price: ${product.price}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
